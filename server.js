@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './src/config/database.config.js'
 import { clerkMiddleware } from '@clerk/express'
+import { serve } from "inngest/express";
+import { inngest,functions } from './src/inngest.js'
 
 dotenv.config()
 connectDB()
@@ -22,6 +24,8 @@ app.get('/',(req,res)=>{
 app.get('/api/home',(req,res)=>{
     res.status(201).json({message:'Hello from home'})
 })
+
+app.use("/api/inngest", serve({ client: inngest, functions }));
 
 
 //server
