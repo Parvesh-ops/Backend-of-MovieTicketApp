@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './src/config/database.config.js'
+import { clerkMiddleware } from '@clerk/express'
 
 dotenv.config()
 connectDB()
@@ -10,6 +11,7 @@ const PORT = process.env.PORT
 
 //middelware
 app.use(express.json())
+app.use(clerkMiddleware())
 
 //test route
 app.get('/',(req,res)=>{
