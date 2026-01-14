@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import connectDB from './src/config/database.config.js'
 import { clerkMiddleware } from '@clerk/express'
 import { serve } from "inngest/express";
@@ -11,6 +12,13 @@ connectDB()
 
 const app = express()
 const PORT = process.env.PORT
+
+app.use(cors(
+    {
+        origin:'http://localhost:5173',
+        credentials:true
+    }
+))
 
 //middelware
 app.use(express.json())

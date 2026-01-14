@@ -1,10 +1,9 @@
 import express from "express"
+import { getHome } from "../controllers/movie.controllers.js"
 
 const router = express.Router()
 
-router.get('/home',(req,res)=>{
-    res.json({message:'Hello from home page!!'})
-})
+router.get('/home',getHome)
 
 router.get('/about',(req,res)=>{
     res.json({message:'This is from About page'})
